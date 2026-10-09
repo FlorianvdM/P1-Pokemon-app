@@ -1,32 +1,60 @@
 import { useEffect, useState } from "react";
 import PokemonCard from "../components/PokemonCard";
+import SearchBar from "../components/SearchBar";
 
 function List() {
   const [pokemons, setPokemons] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
-    fetch("https://pokeapi.co/api/v2/pokemon?limit=20")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setPokemons(data.results);
+    fetch("https://pokeapi.co/api/v2/pokemon?limit=151")
+      .then((res) => {
+        if (!res.ok) throw new Error("Kon Pokémon niet ophalen");
+        return res.json();
       })
-      .catch((error) => console.error("Error:", error));
+      .then((data) => {
+        setPokemons(data.results);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setError(err.message);
+        setLoading(false);
+      });
   }, []);
 
-  return (
-    <div>
-      <h2>Pokémon Lijst</h2>
-      <div className="card-grid">
-        {pokemons.map((p) => {
-          // De id staat aan het eind van de url, bijv. ".../pokemon/25/"
-          const id = p.url.split("/").filter(Boolean).pop();
-          const image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
+  const filtered = pokemons.filter((p) =>
+    p.name.toLowerCase().includes(search.toLowerCase())
+  );
 
-          return <PokemonCard key={p.name} id={id} name={p.name} image={image} />;
+  if (loading) return <p className="status-msg">Pokémon laden...</p>;
+  if (error) return <p className="status-msg error">Fout: {error}</p>;
+
+  return (
+    <section className="list-page">
+      <div className="list-heading">
+        <div>
+          <p className="eyebrow">Regio Kanto / 001–151</p>
+          <h2>Pokédex</h2>
+        </div>
+        <p className="list-count">{filtered.length} Pokémon</p>
+      </div>
+
+      <SearchBar value={search} onChange={setSearch} />
+
+      <div className="card-grid">
+        {filtered.map((p) => {
+          const id = p.url.split("/").filter(Boolean).pop();
+          return <PokemonCard key={p.name} id={id} name={p.name} />;
         })}
       </div>
-    </div>
+
+      {filtered.length === 0 && (
+        <p className="status-msg">Geen Pokémon gevonden voor “{search}”.</p>
+      )}
+    </section>
   );
 }
 

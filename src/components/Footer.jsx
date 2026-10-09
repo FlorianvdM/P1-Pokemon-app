@@ -1,7 +1,7 @@
 function Footer() {
   return (
     <footer>
-      <p>&copy; 2026 Pokémon Team Manager</p>
+      <p>&copy; 2026 Pokémon Team Manager – data via PokeAPI</p>
     </footer>
   );
 }
