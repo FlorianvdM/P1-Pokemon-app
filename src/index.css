@@ -1,4 +1,3 @@
-/* ========== Simpel Blauw & Wit Thema ========== */
 :root {
   --bg: #f4f7fb;
   --bg-card: #ffffff;
@@ -38,7 +37,6 @@ body {
   flex-direction: column;
 }
 
-/* ========== Header ========== */
 header {
   display: flex;
   align-items: center;
@@ -107,7 +105,6 @@ footer p {
   margin: 0;
 }
 
-/* ========== Shared ========== */
 .eyebrow {
   margin: 0 0 0.4rem;
   color: var(--accent);
@@ -144,7 +141,6 @@ footer p {
   color: var(--accent);
 }
 
-/* ========== Home ========== */
 .home-intro {
   display: grid;
   grid-template-columns: 1fr;
@@ -223,7 +219,6 @@ footer p {
   color: #fff;
 }
 
-/* ========== List heading + search ========== */
 .list-heading {
   display: flex;
   align-items: flex-end;
@@ -276,7 +271,6 @@ footer p {
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
 }
 
-/* ========== Cards ========== */
 .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
@@ -344,7 +338,6 @@ footer p {
   text-decoration: underline;
 }
 
-/* Favoriet knop */
 .fav-btn {
   padding: 0.2rem 0.45rem;
   border: none;
@@ -381,7 +374,6 @@ footer p {
   color: var(--accent);
 }
 
-/* ========== Detail ========== */
 .detail-layout {
   display: grid;
   grid-template-columns: 1fr 1.25fr;
@@ -462,7 +454,6 @@ footer p {
   border-color: var(--accent);
 }
 
-/* ========== Teams ========== */
 .create-team-form {
   display: flex;
   flex-wrap: wrap;
@@ -564,7 +555,6 @@ footer p {
   background: #fee2e2;
 }
 
-/* ========== Responsive ========== */
 @media (max-width: 720px) {
   header {
     flex-direction: column;
