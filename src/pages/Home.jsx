@@ -19,16 +19,6 @@ function Home() {
           </Link>
         </div>
       </div>
-
-      <div className="starter-lineup" aria-label="Bulbasaur, Charmander en Squirtle">
-        {[1, 4, 7].map((id) => (
-          <img
-            key={id}
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`}
-            alt=""
-          />
-        ))}
-      </div>
     </section>
   );
 }
